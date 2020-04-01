@@ -1,25 +1,21 @@
-def pronounce(name):
-    """
-    Generate the pronunciation code of the string
-    
-    """
-    name = name.upper()
-    result = ""
-    if len(name) == 0 :
-        return '0000'
-    else:
-        result += name[0]
-        dictionary = {"BFPV": "1", "CGJKQSXZ":"2", "DT":"3", "L":"4", "MN":"5", "R":"6", "AEIOUHWY":"."}
-        for char in name[1:]:
-            for key in dictionary.keys():
-                if char in key:
-                    code = dictionary[key]
-                    if code != result[-1]:
-                        result += code
-        
-        if len(result) == 2 and result[1] == '.':
-            return result[0]+'999' 
-        result = result.replace(".", "")
-        result = result[:4].ljust(4, "0")
+import setuptools
 
-    return result
+with open("README.md", "r") as f:
+    long_description = f.read()
+
+setuptools.setup(
+    name = 'pronounce',
+    version = '1.0.0',
+    author="Vishal Kumar",
+    author_email="vtkumar022@gmail.com",
+    description = 'Generate the pronunciation code for the string',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/vish0709/pronounce/",
+    packages=setuptools.find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+)
